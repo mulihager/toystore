@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .center {
+            text-align: center;
+            margin-top: 30px;
+            text-decoration:underline;
+        }
+
+        
+         h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        .endpoint {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .method {
+            font-weight: bold;
+        }
+
+        .param {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .example {
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Grocery Store API Documentation</h1>
+    <h2 class="center">Product Management API Documentation</h2>
+
+    <h2>1. Get Products</h2>
+    <div class="endpoint">
+        <p class="method">Method: GET</p>
+        <p class="param">Endpoint: /products/</p>
+        Link: <a class="param" href="https://grocery-store.cyclic.app/products?limit=10&page=1&sort=price&reverse=yes">/products?limit=10&page=1&sort=price&reverse=yes</a>
+        <p>Description: Get a list of products based on various filters and pagination.</p>
+        <p>Query Parameters:</p>
+        <ul>
+            <li><strong>limit</strong> (optional) - Number of products to get per page(default: 4).</li>
+            <li><strong>page</strong> (optional) - Page number for pagination(default: 1).</li>
+            <li><strong>sort</strong> (optional) - Sort products by a field ("name", "price") (default: _id).</li>
+            <li><strong>reverse</strong> (optional) - Reverse the sorting order (use "yes" to reverse) (default: no reverse).</li>
+            <li><strong>categories</strong> (optional) - Filter products by categories (JSON array, ["food","drink", ... ]) (default: no filter).</li>
+            <li><strong>min</strong> (optional) - Minimum price filter (default: 0). </li>
+            <li><strong>max</strong> (optional) - Maximum price filter (default: infinity).</li>
+            <li><strong>filter</strong> (optional) - Search for products with a name or info containing a keyword.</li>
+        </ul>
+        <div class="example">
+            <p>Example Request:</p>
+            <pre>GET /products?limit=5&min=3&max=9&categories=["fruit"]</pre>
+        </div>
+        <div class="example">
+            <p>Example Response:</p>
+            <pre>[
+            {
+                "_id": "64ec7a20d74bc023fef70e08",
+                "name": "Apple",
+                "info": "Apples are the ideal fruit.",
+                "price": 4.9,
+                "img_url": "https://i5.walmartimages.com/seo/Fresh-Red-Delicious-Apple.jpeg",
+                "createdAt": "2023-08-28T10:42:40.879Z",
+                "updatedAt": "2023-08-28T10:42:40.879Z",
+                "__v": 0,
+                "categories": [
+                "fruit",
+                "natural",
+                "food"
+                ],
+                "company": "Primor",
+                "user_id": "64ec843a044cb899015f4bf6"
+            },
+            {
+                "_id": "64ec7f4c98549989b06a11ef",
+                "name": "Banana",
+                "info": "A sweet yellow fruit",
+                "price": 4,
+                "img_url": "https://i5.walmartimages.com/seo/Fresh-Banana-Fruit.jpeg",
+                "createdAt": "2023-08-28T11:04:44.474Z",
+                "updatedAt": "2023-08-28T11:04:44.474Z",
+                "__v": 0,
+                "categories": [
+                "fruit",
+                "natural",
+                "food"
+                ],
+                "company": "Primor",
+                "user_id": "64ec843a044cb899015f4bf6"
+            },
+                {
+                "_id": "64f367681657fa181ebff57c",
+                "name": "Grapes",
+                "info": "Delicious Purple Grapes!",
+                "price": 3.2,
+                "img_url": "https://i5.walmartimages.ca/images/Enlarge.jpeg",
+                "createdAt": "2023-09-02T16:48:40.441Z",
+                "updatedAt": "2023-09-02T16:48:40.441Z",
+                "categories": [
+                "fruit",
+                "natural",
+                "food"
+                ],
+                "user_id": "64ec843a044cb899015f4bf6",
+                "__v": 0,
+                "company": "Primor"
+            }
+    ]</pre>
+        </div>
+    </div>
+
+    <h2>2. Get Single Product</h2>
+    <div class="endpoint">
+        <p class="method">Method: GET</p>
+        <p class="param">Endpoint: /products/single/:id</p>
+        Link: <a class="param" href="https://grocery-store.cyclic.app/products/single/64ec7a20d74bc023fef70e08">/products/single/64ec7a20d74bc023fef70e08</a>
+        <p>Description: Get a single product by its unique identifier (`_id`).</p>
+        <p>Parameters:</p>
+        <ul>
+            <li><strong>id</strong> (required) - The unique identifier of the product.</li>
+        </ul>
+        <div class="example">
+            <p>Example Request:</p>
+            <pre>GET /products/single/64ec7a20d74bc023fef70e08</pre>
+        </div>
+        <div class="example">
+            <p>Example Response:</p>
+            <pre>
+{
+                    "_id": "64ec7a20d74bc023fef70e08",
+                    "name": "Apple",
+                    "info": "Apples are the ideal fruit.",
+                    "price": 4.9,
+                    "img_url": "https://i5.walmartimages.com/seo/Fresh-Red-Delicious-Apple.jpeg",
+                    "createdAt": "2023-08-28T10:42:40.879Z",
+                    "updatedAt": "2023-08-28T10:42:40.879Z",
+                    "__v": 0,
+                    "categories": [
+                    "fruit",
+                    "natural",
+                    "food"
+                    ],
+                    "company": "Primor",
+                    "user_id": "64ec843a044cb899015f4bf6"
+}
+</pre>
+        </div>
+    </div>
+
+    <h2>3. Create Product</h2>
+    <div class="endpoint">
+        <p class="method">Method: POST</p>
+        <p class="param">Endpoint: /products/</p>
+        <p>Description: Create a new product.</p>
+        <p>Authorization: Admin authentication required.</p>
+        <p>Request Body: JSON object representing the product. It should match the schema defined for product validation.</p>
+        <div class="example">
+            <p>Example Request:</p>
+            <pre>
+POST /products/
+Headers:
+    x-api-key: [Admin Token]
+
+Body:
+{
+    "name": "Jam",
+    "company":"Smucker's",
+    "info": "Sweet Strawberry jam!",
+    "price": 4.5,
+    "img_url": "https://i5.walmartimages.com/seo/Smucker-s-Strawberry-Jam.jpeg",
+      "categories": [
+      "sweet",
+      "natural",
+      "food"
+    ]
+}
+</pre>
+        </div>
+        <div class="example">
+            <p>Example Response:</p>
+            <pre>
+{
+    "name": "Jam",
+    "company": "Smucker's",
+    "info": "Sweet Strawberry jam!",
+    "price": 4.5,
+    "img_url": "https://i5.walmartimages.com/seo/Smucker-s-Strawberry-Jam-32-Ounces_96cf04da-5729-4b16-93cc-5bb83c562aca_1.bb7009fd6af969962551919a1e641f20.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
+    "categories": [
+        "sweet",
+        "natural",
+        "food"
+    ],
+    "_id": "6508467ed39b44b351dccacd",
+    "user_id": "64ec843a044cb899015f4bf6",
+    "createdAt": "2023-09-18T12:45:50.740Z",
+    "updatedAt": "2023-09-18T12:45:50.740Z",
+    "__v": 0
+}
+</pre>
+        </div>
+    </div>
+
+    <h2>4. Update Product</h2>
+    <div class="endpoint">
+        <p class="method">Method: PUT</p>
+        <p class="param">Endpoint: /products/:editId</p>
+        <p>Description: Update an existing product by its unique identifier (`_id`).</p>
+        <p>Authorization: Admin authentication required and the user ID on the product should match the token ID.</p>
+        <p>Parameters:</p>
+        <ul>
+            <li><strong>editId</strong> (required) - The unique identifier of the product to update.</li>
+        </ul>
+        <p>Request Body: JSON object representing the updates to the product. It should match the schema defined for product update validation.</p>
+        <div class="example">
+            <p>Example Request:</p>
+            <pre>
+PUT /products/1234567890
+Headers:
+    x-api-key: [Admin Token]
+
+Body:
+{
+    "price": 39.99
+}
+</pre>
+        </div>
+        <div class="example">
+            <p>Example Response:</p>
+            <pre>
+"Successfully Updated Product"
+</pre>
+        </div>
+    </div>
+
+    <h2>5. Delete Product</h2>
+    <div class="endpoint">
+        <p class="method">Method: DELETE</p>
+        <p class="param">Endpoint: /products/:delId</p>
+        <p>Description: Delete an existing product by its unique identifier (`_id`).</p>
+        <p>Authorization: Admin authentication required and the user ID on the product should match the token ID.</p>
+        <p>Parameters:</p>
+        <ul>
+            <li><strong>delId</strong> (required) - The unique identifier of the product to delete.</li>
+        </ul>
+        <div class="example">
+            <p>Example Request:</p>
+            <pre>
+DELETE /products/1234567890
+Headers:
+    x-api-key: [Admin Token]
+</pre>
+        </div>
+        <div class="example">
+            <p>Example Response:</p>
+            <pre>
+"Successfully Deleted Product"
+</pre>
+        </div>
+    </div>
+    <h2 class="center">User Management API Documentation</h2>
+    <h2>1. Get All Users</h2>
+    <div class="endpoint">
+        <p class="method">Method: GET</p>
+        <p class="param">Endpoint: /users</p>
+        Link: <a class="param" href="https://grocery-store.cyclic.app/users">/users</a>
+        <p>Description: Get a list of all users.</p>
+        <div class="example">
+            <p>Example Request:</p>
+            <pre>GET /users/</pre>
+        </div>
+        <div class="example">
+            <p>Example Response:</p>
+            <pre>[
+    {
+        "name": "User 1",
+        "email": "user1@example.com"
+    },
+    {
+        "name": "User 2",
+        "email": "user2@example.com"
+    }
+]</pre>
+        </div>
+    </div>
+
+    <h2>2. Get Current User</h2>
+    <div class="endpoint">
+        <p class="method">Method: GET</p>
+        <p class="param">Endpoint: /users/single</p>
+        <p>Description: Get the current user's information.</p>
+        <p>Authorization: Current user authentication.</p>
+        <div class="example">
+            <p>Example Request:</p>
+            <pre>GET /users/single</pre>
+        </div>
+        <div class="example">
+            <p>Example Response:</p>
+            <pre>{
+    "name": "Current User",
+    "email": "currentuser@example.com"
+}</pre>
+        </div>
+    </div>
+
+    <h2>3. User Signup</h2>
+    <div class="endpoint">
+        <p class="method">Method: POST</p>
+        <p class="param">Endpoint: /users/signup</p>
+        <p>Description: Create a new user account.</p>
+        <div class="example">
+            <p>Example Request:</p>
+            <pre>
+POST /users/signup
+
+Body:
+{
+    "name": "New User",
+    "email": "newuser@example.com",
+    "password": "******"
+}
+</pre>
+        </div>
+        <div class="example">
+            <p>Example Response:</p>
+            <pre>{
+            "name": "New User",
+            "email": "newuser@example.com",
+            "password": "*****",
+            "role": "user",
+            "_id": "1234567890",
+            "createdAt": "2023-09-18T12:56:32.511Z",
+            "updatedAt": "2023-09-18T12:56:32.511Z",
+            "__v": 0
+}</pre>
+        </div>
+    </div>
+
+    <h2>4. User Login</h2>
+    <div class="endpoint">
+        <p class="method">Method: POST</p>
+        <p class="param">Endpoint: /users/login</p>
+        <p>Description: Authenticate and log in a user.</p>
+        <div class="example">
+            <p>Example Request:</p>
+            <pre>
+POST /users/login
+
+Body:
+{
+    "email": "user@example.com",
+    "password": "******"
+}
+</pre>
+        </div>
+        <div class="example">
+            <p>Example Response:</p>
+            <pre>"[JWT Token]"</pre>
+        </div>
+    </div>
+
+    <h2>5. Delete User</h2>
+    <div class="endpoint">
+        <p class="method">Method: DELETE</p>
+        <p class="param">Endpoint: /users/:id</p>
+        <p>Description: Delete a user by ID.</p>
+        <p>Authorization: Current user or admin authentication, only an admin or the user himself can delete an user account.</p>
+        <p>Parameters:</p>
+        <ul>
+            <li><strong>id</strong> (required) - The unique identifier of the user.</li>
+        </ul>
+        <div class="example">
+            <p>Example Request:</p>
+            <pre>DELETE /users/1234567890</pre>
+        </div>
+        <div class="example">
+            <p>Example Response:</p>
+            <pre>{
+    "message": "User deleted successfully"
+}</pre>
+        </div>
+    </div>
+
+    <h2>6. Update User Role</h2>
+    <div class="endpoint">
+        <p class="method">Method: PATCH</p>
+        <p class="param">Endpoint: /users/:id/:role</p>
+        <p>Description: Update a user's role (admin only).</p>
+        <p>Authorization: Admin authentication required.</p>
+        <p>Parameters:</p>
+        <ul>
+            <li><strong>id</strong> (required) - The unique identifier of the user.</li>
+            <li><strong>role</strong> (required) - The new role of the user.</li>
+        </ul>
+        <div class="example">
+            <p>Example Request:</p>
+            <pre>PATCH /users/1234567890/admin</pre>
+        </div>
+        <div class="example">
+            <p>Example Response:</p>
+            <pre>{
+    "message": "User role updated successfully"
+}</pre>
+        </div>
+    </div>
+
+</body>
+</html>
