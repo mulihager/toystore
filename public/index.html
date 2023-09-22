@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Documentation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 20px;
+        background-color: #f0f0f0;
+      }
+
+      .section {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+        background-color: #fff;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      h2 {
+        color: #555;
+      }
+
+      p {
+        color: #777;
+      }
+
+      ul {
+        list-style-type: disc;
+        margin-left: 20px;
+      }
+      .method {
+        padding-bottom: 10px;
+        border-bottom: 1px black solid;
+        margin-bottom: 10px;
+      }
+
+      strong {
+        color: #222;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="section">
+      <h1>Toy Store</h1>
+    </div>
+
+    <div class="section">
+      <h2>User Routes</h2>
+      <ul>
+        <li class="method">
+          <strong>POST /api/users/</strong>: Create a new user.
+          <br />
+          Example:
+          <a
+            href="https://erin-courageous-bass.cyclic.cloud/api/users/"
+            target="_blank"
+          >
+            https://erin-courageous-bass.cyclic.cloud/api/users/
+          </a>
+          <p><strong>Required Body:</strong></p>
+          <ul>
+            <li>
+              <strong>username</strong> (string, required): The username of the
+              user.
+            </li>
+            <li>
+              <strong>email</strong> (string, required): The email address of
+              the user.
+            </li>
+            <li>
+              <strong>password</strong> (string, required): The password for the
+              user account.
+            </li>
+          </ul>
+        </li>
+        <br />
+        <li class="method">
+          <strong>POST /api/users/login</strong>: Login with a user account.
+          <br />
+          Example:
+          <a
+            href="https://erin-courageous-bass.cyclic.cloud/api/users/login"
+            target="_blank"
+          >
+            https://erin-courageous-bass.cyclic.cloud/api/users/login
+          </a>
+          <p><strong>Required Body:</strong></p>
+          <ul>
+            <li>
+              <strong>email</strong> (string, required): The email address of
+              the user.
+            </li>
+            <li>
+              <strong>password</strong> (string, required): The password for the
+              user account.
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Toy Routes</h2>
+      <ul>
+        <li class="method">
+          <strong>GET /api/toys/</strong>: Retrieve a list of toys.
+          <br />
+          Example:
+          <a
+            href="https://erin-courageous-bass.cyclic.cloud/api/toys/"
+            target="_blank"
+          >
+            https://erin-courageous-bass.cyclic.cloud/api/toys/
+          </a>
+
+          <p><strong>Queries:</strong></p>
+          <ul>
+            <li>
+              <strong>limit</strong> (number, optional): Limit the number of
+              results per page (default: 10).
+            </li>
+            <li>
+              <strong>page</strong> (number, optional): Specify the page number
+              for pagination (default: 1).
+            </li>
+            <li>
+              <strong>sort</strong> (string, optional): Sort the results by a
+              field (default: "_id").
+            </li>
+            <li>
+              <strong>reverse</strong> (string, optional): Reverse the sorting
+              order (yes/no).
+            </li>
+            <li>
+              <strong>s</strong> (string, optional): Search query to filter toys
+              by title or info.
+            </li>
+            <li>
+              <strong>catname</strong> (string, optional): Filter toys by
+              category name.
+            </li>
+          </ul>
+          <br />
+        </li>
+        <li class="method">
+          <strong>GET /api/toys/single/:id</strong>: Retrieve a single toy by
+          ID.
+          <br />
+          Example:
+          <a
+            href="https://erin-courageous-bass.cyclic.cloud/api/toys/single/123"
+            target="_blank"
+          >
+            https://erin-courageous-bass.cyclic.cloud/api/toys/single/123
+          </a>
+          <p><strong>Parameters:</strong></p>
+          <ul>
+            <li>
+              <strong>id</strong> (string, required): The ID of the toy to
+              retrieve.
+            </li>
+          </ul>
+        </li>
+        <br />
+        <li class="method">
+          <strong>POST /api/toys/</strong>: Create a new toy.
+          <br />
+          Example:
+          <a
+            href="https://erin-courageous-bass.cyclic.cloud/api/toys/"
+            target="_blank"
+          >
+            https://erin-courageous-bass.cyclic.cloud/api/toys/
+          </a>
+          <p><strong>Required Body:</strong></p>
+          <ul>
+            <li>
+              <strong>name</strong> (string, required): The name of the toy
+              (min: 2, max: 400 characters).
+            </li>
+            <li>
+              <strong>info</strong> (string, required): Additional information
+              about the toy (min: 2, max: 400 characters).
+            </li>
+            <li>
+              <strong>price</strong> (number, required): The price of the toy
+              (min: 1, max: 99999).
+            </li>
+            <li>
+              <strong>img_url</strong> (string, optional): The URL of the toy's
+              image (min: 1, max: 500 characters, allowed: null or empty).
+            </li>
+            <li>
+              <strong>category</strong> (string, optional): The category of the
+              toy (min: 2, max: 400 characters, allowed: null).
+            </li>
+          </ul>
+          <p>
+            <strong>Authorization:</strong> Token required for user
+            authentication.
+          </p>
+        </li>
+        <li class="method">
+          <strong>PUT /api/toys/:id</strong>: Update an existing toy by ID.
+          <br />
+          Example:
+          <a
+            href="https://erin-courageous-bass.cyclic.cloud/api/toys/123"
+            target="_blank"
+          >
+            https://erin-courageous-bass.cyclic.cloud/api/toys/123
+          </a>
+          <p><strong>Parameters:</strong></p>
+          <ul>
+            <li>
+              <strong>id</strong> (string, required): The ID of the toy to
+              update.
+            </li>
+          </ul>
+
+          <p><strong>Required Body:</strong></p>
+          <ul>
+            <li>
+              <strong>name</strong> (string, required): The name of the toy
+              (min: 2, max: 400 characters).
+            </li>
+            <li>
+              <strong>info</strong> (string, required): Additional information
+              about the toy (min: 2, max: 400 characters).
+            </li>
+            <li>
+              <strong>price</strong> (number, required): The price of the toy
+              (min: 1, max: 99999).
+            </li>
+            <li>
+              <strong>img_url</strong> (string, optional): The URL of the toy's
+              image (min: 1, max: 10000 characters, allowed: null or empty).
+            </li>
+            <li>
+              <strong>category</strong> (string, optional): The category of the
+              toy (min: 2, max: 400 characters, allowed: null).
+            </li>
+          </ul>
+          <p>
+            <strong>Authorization:</strong> Token required for user
+            authentication.
+          </p>
+        </li>
+        <li class="method">
+          <strong>DELETE /api/toys/:delId</strong>: Delete a toy by ID.
+          <br />
+          Example:
+          <a
+            href="https://erin-courageous-bass.cyclic.cloud/api/toys/123"
+            target="_blank"
+          >
+            https://erin-courageous-bass.cyclic.cloud/api/toys/123
+          </a>
+          <p><strong>Parameters:</strong></p>
+          <ul>
+            <li>
+              <strong>delId</strong> (string, required): The ID of the toy to
+              delete.
+            </li>
+          </ul>
+          <p>
+            <strong>Authorization:</strong> Token required for user
+            authentication.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

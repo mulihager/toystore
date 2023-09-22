@@ -23,7 +23,7 @@
         const joiSchema = Joi.object({
             name:Joi.string().min(2).max(400).required(),
             info:Joi.string().min(2).max(400).required(),
-            price:Joi.number().min(1).max(99999).required(),
+            price:Joi.number().min(1).max(500).required(),
             img_url:Joi.string().min(1).max(10000).allow(null,""),
             category:Joi.string().min(2).max(400).allow(null)
         })
@@ -32,13 +32,5 @@
 
 
 
-    exports.validateUpdateToy = (_reqbody) =>{
-        const joiSchema = joi.object({
-            name:Joi.string().min(2).max(400).required().allow(null),
-            info:Joi.string().min(2).max(400).allow(null),
-            price:Joi.number().min(1).max(99999).allow(null),
-            img_url:Joi.string().min(1).max(10000).allow(null,""),
-            category:Joi.string().min(2).max(400).allow(null)
-        })
-        return joiSchema.validate(_reqbody);
-    }
+
+    
